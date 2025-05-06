@@ -1,0 +1,103 @@
+.settings-page {
+  display: flex;
+  color: #4b164c;
+  height: 98vh;
+  width: 100vw;
+}
+
+.settings-page-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  width: 80%;
+}
+.settings-page-list {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 90%;
+  margin: 1rem;
+  padding: 0.5rem;
+  /* padding-top: 2rem; */
+}
+.settings-page-notifications,
+.settings-page-events,
+.settings-page-authentication {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  width: 80%;
+}
+
+.settings-page-authentication .options,
+.settings-page-notifications .options,
+.settings-page-events .options {
+  background-color: rgba(243, 237, 237, 0.671);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: rgb(229, 229, 229);
+    border: 1px solid gray;
+  }
+}
+#default-view,
+#default-reminder,
+#event-privacy {
+  display: none;
+}
+
+.toggleSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 32px; /* reduced from 50px */
+  height: 18px; /* reduced from 30px */
+  background-color: rgb(82, 82, 82);
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.toggleSwitch::after {
+  content: "";
+  position: absolute;
+  height: 6px; /* reduced from 10px */
+  width: 6px;
+  left: 4px; /* adjusted for better alignment */
+  background-color: transparent;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+  box-shadow: 3px 1px 5px rgba(8, 8, 8, 0.26); /* smaller shadow */
+  border: 4px solid white; /* reduced border size */
+}
+
+#default-view:checked + .toggleSwitch::after {
+  transform: translateX(100%);
+  background-color: white;
+}
+
+#default-view:checked + .toggleSwitch {
+  background-color: rgb(148, 118, 255);
+}
+#default-reminder:checked + .toggleSwitch::after {
+  transform: translateX(100%);
+  background-color: white;
+}
+
+#default-reminder:checked + .toggleSwitch {
+  background-color: rgb(148, 118, 255);
+}
+#event-privacy:checked + .toggleSwitch::after {
+  transform: translateX(100%);
+  background-color: white;
+}
+
+#event-privacy:checked + .toggleSwitch {
+  background-color: rgb(148, 118, 255);
+}
