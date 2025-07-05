@@ -1,7 +1,7 @@
 .home-page {
   display: flex;
   flex-direction: row;
-  width: 100vw;
+  width: 100%;
   /*background: linear-gradient(to right, #ffafbc23, #ffc3a023);*/
   background-color: white;
 }
@@ -64,7 +64,7 @@
   padding: 1vw;
 }
 
-.pinned-events,
+.all-events,
 .inprogress-events,
 .upcoming-events,
 .registered-events {
@@ -95,7 +95,7 @@
   cursor: pointer;
 }
 
-.pinned-events .card {
+.all-events .card {
   color: #5ea9ff;
   background-color: #8ec3ff47;
   &:hover {
@@ -132,14 +132,18 @@
 
 .card .tag {
   display: flex;
+  flex-wrap: wrap;
   gap: 1vw;
+  max-width: 100%;
+  margin-bottom: 1vw;
 }
-
 .tag p {
   color: #555555;
   border-radius: 1vw;
+  font-size: 0.9vw;
   background-color: rgba(163, 163, 163, 0.084);
   padding: 0.5vw 1vw;
+  white-space: nowrap;
 }
 
 .card h3 {

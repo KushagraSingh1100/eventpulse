@@ -24,7 +24,7 @@ public class Event {
     @Id
     private ObjectId id;
     @Builder.Default
-    private String img_url = "https://media.istockphoto.com/id/1218975473/photo/group-of-college-student-friends-meeting-and-talking-in-busy-communal-campus-building.jpg?s=612x612&w=0&k=20&c=ggYncioFDbZjXryC923y3Jmdc3uNFAsmZML-ftZYXYI=";
+    private String img_url = "https://link-shortner-ehv0.onrender.com/pDCCYDZ2";
     @Indexed(unique = true)
     private String title;
     private String description;
@@ -39,6 +39,5 @@ public class Event {
     private Integer prize;
     private List<String> attachments;
     private List<String> contacts;
-    @DBRef
-    private List<User> participants = new ArrayList<>();
+    private List<String> participants = new ArrayList<>();
 }

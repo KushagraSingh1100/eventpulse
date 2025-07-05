@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -55,12 +57,13 @@ public class PublicController {
         newUser.setPortfolio_link(user.getPortfolio_link());
         userService.saveAdminUser(newUser);
     }
-
     @GetMapping("/all-events")
     public ResponseEntity<?> getall(){
         List<Event> all = eventService.getall();
         if(all!=null){
-            return new ResponseEntity<>(all, HttpStatus.OK);
+            Map<String, Object> response = new HashMap<>();
+            response.put("events", all);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
         return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

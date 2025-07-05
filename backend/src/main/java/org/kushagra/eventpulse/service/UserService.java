@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class UserService {
@@ -37,8 +38,22 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void registerEvent(User user, Event event){
-        user.getEvents_registered().add(event);
+    public boolean registerEvent(User user, Event event){
+        if (!user.getEvents_registered().contains(event)) {
+            user.getEvents_registered().add(event);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+
+    public void pinEvent(User user, Event event){
+        user.getEvents_pinned().add(event);
         userRepository.save(user);
+    }
+
+    public List<Event> getPinnedEvents(User user){
+        List<Event> pinnedEvents = user.getEvents_pinned();
+        return pinnedEvents;
     }
 }

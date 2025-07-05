@@ -5,6 +5,7 @@ import org.kushagra.eventpulse.entity.Event;
 import org.kushagra.eventpulse.entity.User;
 import org.kushagra.eventpulse.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,8 +34,14 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    public void addParticipant(User user, Event event){
-        event.getParticipants().add(user);
-        eventRepository.save(event);
+    public boolean addParticipant(User user, Event event){
+        if(!event.getParticipants().contains(user.getUsername())){
+            event.getParticipants().add(user.getUsername());
+            eventRepository.save(event);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

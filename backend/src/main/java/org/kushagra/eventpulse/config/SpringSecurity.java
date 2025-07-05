@@ -26,12 +26,14 @@ public class SpringSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 
-        return http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/public/**").permitAll()
-                        .requestMatchers("/journal/**", "/user/**").authenticated()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/register/event/**").hasRole("STUDENT")
-                        .anyRequest().authenticated())
+        return http
+                    .cors(Customizer.withDefaults())
+                        .authorizeHttpRequests(request -> request
+                            .requestMatchers("/public/**").permitAll()
+                            .requestMatchers("/journal/**", "/user/**").authenticated()
+                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .requestMatchers("/user/register/event/**").hasRole("STUDENT")
+                            .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
